@@ -5,6 +5,7 @@
 An interactive R Shiny dashboard exploring disaster frequency, economic losses, casualty patterns, and response time across 20 countries from 2018 to 2024.
 
 > **Live App:** https://019ce3ab-c7c7-4487-8434-582db5539b78.share.connect.posit.cloud/
+
 > **Original Group Project:** [DSCI-532_2026_18_disasterdash](https://github.com/UBC-MDS/DSCI-532_2026_18_disasterdash)
 
 ---
