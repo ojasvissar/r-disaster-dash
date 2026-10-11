@@ -41,5 +41,5 @@ Requires R ≥ 4.3. Data lives in `data/global_disaster_response_2018_2024.csv`.
 
 ## Author
 
-**Ojasv Issar** · [@ojasvissar](https://github.com/ojasvissar) · UBC MDS 2026
+**Ojasv Issar** · [@ojasvissar](https://github.com/ojasvissar) · UBC MDS 2026  
 Individual assignment based on the group project by Ojasv Issar, Joel Nicholas Peterson & Claire Saunders.
