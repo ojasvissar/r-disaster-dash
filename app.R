@@ -81,7 +81,7 @@ TYPE_ICONS <- c(
 
 VIEW_TITLES <- c(
   overview  = "Overview",
-  impact    = "Economic impact",
+  impact    = "Impact",
   response  = "Response & recovery",
   countries = "Countries"
 )
@@ -275,7 +275,7 @@ CSS <- r"(
   --backdrop: #bfd3dc; --frame: #2b2b2b; --panel: #f6f5f1; --card: #ffffff;
   --ink: #1f1f1f; --ink-2: #5b5a56; --muted: #8d8b85; --line: #e6e4dd;
   --yellow: #ffd866; --lilac: #d9bdfb; --sky: #c4e6f9;
-  --orange: #f2542d; --orange-dk: #d9431e;
+  --orange: #f2542d; --orange-dk: #d9431e; --gap: 14px;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html, body {
@@ -283,51 +283,52 @@ html, body {
   font-family: 'Lexend', system-ui, sans-serif !important;
   -webkit-font-smoothing: antialiased;
 }
-body { padding: 28px 24px 12px; }
+body { padding: 14px; }
 .bslib-page-fill, .container-fluid { padding: 0 !important; }
 
 /* ── SHELL ── */
 .shell {
-  display: grid; grid-template-columns: 84px minmax(0, 1fr);
-  max-width: 1480px; margin: 0 auto; background: var(--frame);
-  border-radius: 38px; padding: 18px 18px 18px 0;
-  min-height: calc(100vh - 92px);
+  display: grid; grid-template-columns: 76px minmax(0, 1fr);
+  max-width: 1600px; margin: 0 auto; background: var(--frame);
+  border-radius: 32px; padding: 14px 14px 14px 0;
   box-shadow: 0 30px 60px -30px rgba(31, 52, 64, 0.45);
 }
 .rail {
   display: flex; flex-direction: column; align-items: center;
-  gap: 12px; padding: 52px 0 10px;
+  gap: 10px; padding: 40px 0 6px;
 }
 .rail-btn {
-  width: 44px; height: 44px; border-radius: 13px; border: 0;
-  display: grid; place-items: center; font-size: 1.05rem;
+  width: 42px; height: 42px; border-radius: 12px; border: 0;
+  display: grid; place-items: center; font-size: 1.02rem;
   background: transparent; color: #e8e6df; transition: background .15s, color .15s;
   text-decoration: none; cursor: pointer;
 }
 .rail-btn:hover { background: rgba(255,255,255,.08); color: #fff; }
 .rail-btn.active { background: var(--yellow); color: var(--ink); }
-.rail-gap { height: 30px; }
+.rail-gap { height: 24px; }
 .rail-bottom { margin-top: auto; }
 
 .panel {
-  background: var(--panel); border-radius: 28px; padding: 26px 30px 32px;
-  min-width: 0;
+  background: var(--panel); border-radius: 24px; padding: 18px 24px 22px;
+  min-width: 0; display: flex; flex-direction: column;
 }
 
 /* ── TOP BAR ── */
-.topbar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.brand { font-size: .88rem; color: var(--ink-2); white-space: nowrap; }
-.brand b { color: var(--orange); font-size: 1.4rem; font-weight: 600; letter-spacing: -.3px; margin-left: 4px; }
+.topbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.brand { font-size: .86rem; color: var(--ink-2); white-space: nowrap; }
+.brand b { color: var(--orange); font-size: 1.35rem; font-weight: 600; letter-spacing: -.3px; margin-left: 4px; }
 .brand b span { color: var(--ink); }
 .search-wrap { margin-left: auto; width: 320px; position: relative; }
 .search-wrap .form-group, .filters .form-group { margin: 0 !important; width: 100% !important; }
 .search-wrap .selectize-input {
   border: 1px solid var(--ink) !important; border-radius: 12px !important;
-  min-height: 44px; padding: 10px 50px 6px 14px !important; box-shadow: none !important;
-  font-size: .85rem;
+  height: 42px; padding: 9px 48px 6px 14px !important; box-shadow: none !important;
+  font-size: .85rem; display: flex !important; flex-wrap: nowrap !important;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: none;
 }
+.selectize-input > * { flex: none; }
 .search-ico {
-  position: absolute; right: 6px; top: 6px; width: 32px; height: 32px; z-index: 3;
+  position: absolute; right: 5px; top: 5px; width: 32px; height: 32px; z-index: 3;
   background: var(--orange); color: #fff; border-radius: 9px;
   display: grid; place-items: center; pointer-events: none; font-size: .8rem;
 }
@@ -341,7 +342,7 @@ body { padding: 28px 24px 12px; }
 .selectize-dropdown .active { background: var(--panel) !important; color: var(--ink) !important; }
 
 .icon-btn {
-  width: 44px; height: 44px; border-radius: 50% !important; border: 1px solid var(--ink) !important;
+  width: 42px; height: 42px; border-radius: 50% !important; border: 1px solid var(--ink) !important;
   background: #fff !important; color: var(--ink) !important; display: grid !important;
   place-items: center; padding: 0 !important; position: relative;
 }
@@ -350,44 +351,50 @@ body { padding: 28px 24px 12px; }
   background: var(--orange); border: 2px solid #fff; border-radius: 50%;
 }
 .user { display: flex; align-items: center; gap: 10px; }
-.user .av { width: 44px; height: 44px; font-size: .85rem; background: var(--orange); color: #fff; box-shadow: none; }
-.user b { display: block; font-weight: 500; font-size: .92rem; line-height: 1.2; }
-.user small { color: var(--muted); font-size: .76rem; }
+.user .av { width: 42px; height: 42px; font-size: .85rem; background: var(--orange); color: #fff; box-shadow: none; }
+.user b { display: block; font-weight: 500; font-size: .9rem; line-height: 1.2; }
+.user small { color: var(--muted); font-size: .74rem; }
 
-/* ── TITLE + CHIPS ── */
-.title-row { display: flex; align-items: center; gap: 16px; margin: 28px 0 16px; flex-wrap: wrap; }
-.title-row h1 { font-size: 2rem; font-weight: 500; letter-spacing: -.6px; margin: 0; }
+/* ── TITLE + CHIPS + FILTERS ── */
+.title-row { display: flex; align-items: center; gap: 14px; margin: 14px 0 12px; flex-wrap: wrap; }
+.title-row h1 { font-size: 1.75rem; font-weight: 500; letter-spacing: -.6px; margin: 0; white-space: nowrap; }
 .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
 .chip {
   border: 1px solid var(--ink); background: #fff; color: var(--ink);
-  border-radius: 11px; padding: 7px 15px; font-size: .84rem; font-family: inherit;
+  border-radius: 11px; padding: 6px 14px; font-size: .82rem; font-family: inherit;
   cursor: pointer; transition: background .15s, color .15s; white-space: nowrap;
 }
 .chip:hover { background: #efede7; }
 .chip.active { background: var(--ink); color: #fff; }
 .chip-group { display: flex; gap: 6px; flex-wrap: wrap; }
-.chip-group .chip { padding: 4px 11px; font-size: .74rem; border-radius: 9px; border-color: var(--line); }
+.chip-group .chip { padding: 3px 10px; font-size: .72rem; border-radius: 9px; border-color: var(--line); }
 .chip-group .chip.active { border-color: var(--ink); }
 
-/* ── FILTER BAR ── */
 .filters {
-  display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; background: #fff; border: 1px solid var(--line);
-  border-radius: 18px; padding: 10px 14px 10px 18px; margin-bottom: 18px;
+  display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 16px; padding: 2px 12px 4px 16px; margin-bottom: var(--gap);
 }
-.f-type { flex: 1 1 240px; min-width: 0; }
-.f-period { flex: 1.4 1 300px; min-width: 0; }
-.f-label { font-size: .68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 2px; }
+.f-type, .f-period { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.f-type { flex: 1 1 240px; }
+.f-period { flex: 1.4 1 300px; gap: 34px; padding-right: 26px; }
+.f-type > :last-child, .f-period > :last-child { flex: 1 1 auto; min-width: 0; }
+.f-label { font-size: .64rem; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; white-space: nowrap; }
 .filters .selectize-input {
-  border: 0 !important; box-shadow: none !important; padding: 4px 0 !important;
-  min-height: 30px; font-size: .84rem; background: transparent !important;
+  border: 0 !important; box-shadow: none !important; padding: 3px 0 !important;
+  height: 30px; min-height: 30px; font-size: .84rem; background: transparent !important;
+  display: flex !important; flex-wrap: nowrap !important; align-items: center;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: none;
 }
-.irs--shiny .irs-bar { background: var(--orange) !important; border: 0 !important; }
+.filters .irs--shiny { height: 38px; }
+.irs--shiny .irs-line { top: 22px !important; }
+.irs--shiny .irs-bar { top: 22px !important; background: var(--orange) !important; border: 0 !important; }
 .irs--shiny .irs-line { background: #ecebe6 !important; border: 0 !important; }
-.irs--shiny .irs-handle { border: 2px solid var(--ink) !important; background: #fff !important; box-shadow: none !important; width: 20px; height: 20px; top: 21px; }
+.irs--shiny .irs-handle { border: 2px solid var(--ink) !important; background: #fff !important; box-shadow: none !important; width: 18px; height: 18px; top: 17px; }
 .irs--shiny .irs-from:before, .irs--shiny .irs-to:before, .irs--shiny .irs-single:before { border-top-color: var(--ink) !important; }
 .irs--shiny .irs-from, .irs--shiny .irs-to, .irs--shiny .irs-single {
   background: var(--ink) !important; color: #fff !important; font-family: 'Lexend', sans-serif;
-  font-size: .7rem; border-radius: 6px;
+  font-size: .66rem; border-radius: 6px; top: 0;
 }
 .irs--shiny .irs-min, .irs--shiny .irs-max { display: none; }
 .irs--shiny .irs-grid { display: none; }
@@ -395,40 +402,43 @@ body { padding: 28px 24px 12px; }
 .match b { color: var(--ink); font-weight: 500; font-size: 1rem; margin-right: 4px; }
 #reset_button {
   background: var(--panel) !important; color: var(--ink) !important; border: 1px solid var(--ink) !important;
-  border-radius: 11px !important; font-size: .8rem !important; padding: 7px 14px !important;
+  border-radius: 11px !important; font-size: .78rem !important; padding: 5px 13px !important;
 }
 #reset_button:hover { background: var(--ink) !important; color: #fff !important; }
 
-/* ── GRID ── */
-.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px; }
+/* ── VIEW GRIDS ── */
+.views { display: flex; flex-direction: column; }
+.view { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
 .span-3 { grid-column: span 3; } .span-4 { grid-column: span 4; } .span-5 { grid-column: span 5; }
 .span-6 { grid-column: span 6; } .span-7 { grid-column: span 7; } .span-8 { grid-column: span 8; }
 .span-12 { grid-column: span 12; }
 
 /* ── KPI (course-style) CARDS ── */
 .kcard {
-  border: 1px solid var(--ink); border-radius: 20px; padding: 18px 18px 16px;
-  display: flex; flex-direction: column; gap: 12px; min-height: 200px;
+  border: 1px solid var(--ink); border-radius: 18px; padding: 13px 16px 13px;
+  display: flex; flex-direction: column; gap: 9px; min-width: 0;
 }
 .kcard.yellow { background: var(--yellow); --track: #e9bb3c; --ring: var(--yellow); }
 .kcard.lilac  { background: var(--lilac);  --track: #b38bf0; --ring: var(--lilac); }
 .kcard.sky    { background: var(--sky);    --track: #7fc6e6; --ring: var(--sky); }
-.kcard-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.tag { display: inline-block; padding: 5px 11px; border-radius: 9px; font-size: .74rem; border: 1px solid var(--ink); }
+.kcard-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.tag { display: inline-block; padding: 4px 10px; border-radius: 8px; font-size: .72rem; border: 1px solid var(--ink); white-space: nowrap; }
 .tag.dark { background: var(--ink); color: #fff; }
 .tag.yellow { background: var(--yellow); }
 .tag.lilac { background: var(--lilac); }
-.kcard-ico { font-size: 1.15rem; }
-.k-value { font-size: 1.85rem; font-weight: 500; letter-spacing: -.8px; line-height: 1.05; }
-.k-title { font-size: 1.02rem; line-height: 1.3; margin-top: 2px; }
-.k-progress-row { display: flex; justify-content: space-between; font-size: .78rem; margin-bottom: 7px; }
-.bar { height: 8px; border-radius: 99px; background: var(--track, #e6e4dd); overflow: hidden; }
+.kcard-ico { font-size: 1.05rem; }
+.k-value { font-size: 1.6rem; font-weight: 500; letter-spacing: -.7px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.k-value span { font-size: .95rem; font-weight: 400; letter-spacing: 0; margin-left: 4px; }
+.k-progress-row { display: flex; justify-content: space-between; gap: 8px; font-size: .74rem; margin-bottom: 5px; }
+.bar { height: 7px; border-radius: 99px; background: var(--track, #e6e4dd); overflow: hidden; }
 .bar > span { display: block; height: 100%; background: var(--ink); border-radius: 99px; }
-.kcard-foot { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.kcard-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.kcard-foot small { font-size: .76rem; }
 
 .av {
-  width: 32px; height: 32px; border-radius: 50%; display: inline-grid; place-items: center;
-  font-size: .66rem; font-weight: 600; color: var(--ink); flex: none; letter-spacing: .3px;
+  width: 30px; height: 30px; border-radius: 50%; display: inline-grid; place-items: center;
+  font-size: .64rem; font-weight: 600; color: var(--ink); flex: none; letter-spacing: .3px;
 }
 .av.sm { width: 26px; height: 26px; font-size: .6rem; }
 .av-stack { display: flex; }
@@ -437,49 +447,56 @@ body { padding: 28px 24px 12px; }
 .av.more { background: var(--ink); color: #fff; }
 
 .btn-cta {
-  background: var(--orange); color: #fff; border: 0; border-radius: 11px;
-  padding: 8px 18px; font-size: .86rem; font-family: inherit; cursor: pointer;
-  transition: background .15s; text-decoration: none;
+  background: var(--orange); color: #fff; border: 0; border-radius: 10px;
+  padding: 6px 15px; font-size: .82rem; font-family: inherit; cursor: pointer;
+  transition: background .15s; text-decoration: none; white-space: nowrap;
 }
 .btn-cta:hover { background: var(--orange-dk); color: #fff; }
-.btn-cta.wide { width: 100%; padding: 13px; font-size: .95rem; border-radius: 13px; }
+.btn-cta.wide { width: 100%; padding: 11px; font-size: .92rem; border-radius: 12px; }
 
 /* ── TILES ── */
-.tile { background: #fff; border: 1px solid var(--ink); border-radius: 20px; padding: 20px 22px 16px; min-width: 0; height: 100%; }
-.tile-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
-.tile-h h3 { font-size: 1.12rem; font-weight: 500; margin: 0; letter-spacing: -.2px; }
-.tile-h p { font-size: .76rem; color: var(--muted); margin: 3px 0 0; }
-.tile-link { color: var(--orange); font-size: .84rem; text-decoration: none; cursor: pointer; white-space: nowrap; }
+.tile {
+  background: #fff; border: 1px solid var(--ink); border-radius: 18px; padding: 14px 18px 10px;
+  min-width: 0; min-height: 0; display: flex; flex-direction: column;
+}
+.tile-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; flex: none; }
+.tile-h h3 { font-size: 1.02rem; font-weight: 500; margin: 0; letter-spacing: -.2px; }
+.tile-h p { font-size: .72rem; color: var(--muted); margin: 2px 0 0; }
+.tile-link { color: var(--orange); font-size: .82rem; text-decoration: none; cursor: pointer; white-space: nowrap; }
 .tile-link:hover { color: var(--orange-dk); text-decoration: underline; }
+.tile-body { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.plot-box { position: relative; flex: none; height: 280px; min-height: 0; }
+.plot-box > .html-widget { position: absolute !important; inset: 0; width: 100% !important; height: 100% !important; }
 
 /* ── DARK SPOTLIGHT ── */
+.spot-wrap { min-width: 0; min-height: 0; }
 .spot {
-  background: var(--frame); color: #f1efe9; border-radius: 20px; padding: 26px 28px;
-  height: 100%; display: flex; flex-direction: column; gap: 16px;
+  background: var(--frame); color: #f1efe9; border-radius: 18px; padding: 18px 20px;
+  height: 100%; display: flex; flex-direction: column; gap: 11px; min-height: 0; overflow: hidden;
 }
-.spot .eyebrow { font-size: .84rem; color: #cfcdc5; }
-.spot h2 { font-size: 1.45rem; font-weight: 500; line-height: 1.3; margin: 0; letter-spacing: -.3px; }
-.spot .meta { font-size: .8rem; color: #a9a7a0; margin-top: -8px; }
-.spot-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.spot-stats div { background: rgba(255,255,255,.06); border-radius: 12px; padding: 10px 12px; }
-.spot-stats small { display: block; color: #a9a7a0; font-size: .7rem; }
-.spot-stats b { font-weight: 500; font-size: 1.05rem; }
+.spot .eyebrow { font-size: .8rem; color: #cfcdc5; }
+.spot h2 { font-size: 1.3rem; font-weight: 500; line-height: 1.25; margin: 0; letter-spacing: -.3px; }
+.spot h2 small { display: block; font-size: .78rem; color: #a9a7a0; font-weight: 400; margin-top: 3px; letter-spacing: 0; }
+.spot-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.spot-stats div { background: rgba(255,255,255,.06); border-radius: 11px; padding: 8px 10px; min-width: 0; }
+.spot-stats small { display: block; color: #a9a7a0; font-size: .68rem; }
+.spot-stats b { font-weight: 500; font-size: 1rem; white-space: nowrap; }
 .spot .av-stack { --ring: var(--frame); }
 .spot .btn-cta { margin-top: auto; }
 
 /* ── LIST TABLE (lessons style) ── */
-.ltable { width: 100%; border-collapse: collapse; font-size: .86rem; }
-.ltable th { font-weight: 400; color: var(--muted); font-size: .76rem; padding: 6px 0 10px; text-align: left; }
-.ltable td { padding: 11px 0; border-top: 1px solid var(--line); vertical-align: middle; }
+.ltable { width: 100%; border-collapse: collapse; font-size: .84rem; }
+.ltable th { font-weight: 400; color: var(--muted); font-size: .72rem; padding: 4px 0 6px; text-align: left; }
+.ltable td { padding: 7px 0; border-top: 1px solid var(--line); vertical-align: middle; }
 .ltable tr:first-child td { border-top: 0; }
-.ltable .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.ltable .ev b { font-weight: 500; display: block; }
-.ltable .ev small { color: var(--ink-2); font-size: .76rem; }
-.ltable .who { display: flex; align-items: center; gap: 10px; }
-.sev { display: inline-block; min-width: 38px; text-align: center; border-radius: 8px; padding: 2px 8px; font-size: .78rem; background: var(--panel); }
+.ltable .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 10px; }
+.ltable .ev b { font-weight: 500; display: block; white-space: nowrap; }
+.ltable .ev small { color: var(--ink-2); font-size: .72rem; white-space: nowrap; }
+.ltable .who { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.sev { display: inline-block; min-width: 36px; text-align: center; border-radius: 8px; padding: 1px 7px; font-size: .76rem; background: var(--panel); }
 .sev.hi { background: #ffe1d7; color: #9a2e13; }
 .mini-bar { display: inline-block; width: 70px; height: 6px; border-radius: 99px; background: #efede7; margin-right: 8px; vertical-align: middle; overflow: hidden; }
-.mini-bar span { display: block; height: 100%; background: var(--violet, #7b4fe0); }
+.mini-bar span { display: block; height: 100%; background: #7b4fe0; }
 .table-scroll { overflow-x: auto; }
 
 /* ── MODAL ── */
@@ -487,21 +504,43 @@ body { padding: 28px 24px 12px; }
 .modal-header { border-bottom: 1px solid var(--line) !important; }
 .modal-footer { border-top: 0 !important; }
 .modal-footer .btn { border-radius: 11px; background: var(--ink); color: #fff; border: 0; padding: 7px 18px; }
+.modal .ltable td { padding: 9px 0; }
 .kv { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .kv div { background: var(--panel); border-radius: 12px; padding: 10px 14px; }
 .kv small { display: block; color: var(--muted); font-size: .72rem; }
 
-.credit { text-align: center; font-size: .74rem; color: #4d6370; padding: 14px 0 4px; }
-.credit a { color: #23343d; font-weight: 500; text-decoration: none; }
-
 /* plotly hover text uses brand font */
 .js-plotly-plot .plotly .hovertext text { font-family: 'Lexend', sans-serif !important; }
 
-/* ── RESPONSIVE ── */
+/* ── FIT-TO-SCREEN (desktop): every view fills the window, no page scroll ── */
+@media (min-width: 1181px) and (min-height: 640px) {
+  html, body { height: 100%; overflow: hidden; }
+  .shell { height: calc(100vh - 28px); }
+  .panel { min-height: 0; overflow: hidden; }
+  .views { flex: 1 1 auto; min-height: 0; }
+  .views > .tabbable { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+  .views .tab-content { flex: 1 1 auto; min-height: 0; }
+  .views .tab-pane.active { height: 100%; }
+  .view { height: 100%; }
+  .view.overview { grid-template-rows: auto minmax(0, 1fr); }
+  .view.two-rows { grid-template-rows: repeat(2, minmax(0, 1fr)); }
+  .view.one-row  { grid-template-rows: minmax(0, 1fr); }
+  .plot-box { flex: 1 1 0; height: auto; }
+}
+@media (min-width: 1181px) and (max-height: 800px) {
+  :root { --gap: 12px; }
+  .title-row { margin: 10px 0 10px; }
+  .title-row h1 { font-size: 1.5rem; }
+  .ltable .ev small { display: none; }
+  .spot { padding: 14px 16px; gap: 8px; }
+  .spot h2 { font-size: 1.12rem; }
+  .spot-stack, .spot-tag-opt { display: none; }
+}
+
+/* ── RESPONSIVE (stacked, scrolling) ── */
 @media (max-width: 1180px) {
   .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
-  .grid.kpis > .span-4 { grid-column: span 6; }
-  .filters { grid-template-columns: 1fr 1fr; }
+  .spot-wrap { grid-column: span 12; }
 }
 @media (max-width: 760px) {
   body { padding: 0; }
@@ -513,9 +552,8 @@ body { padding: 28px 24px 12px; }
   .user div { display: none; }
   .brand { margin-right: auto; }
   .chips { margin-left: 0; }
-  .grid.kpis > .span-4 { grid-column: span 12; }
-  .filters { grid-template-columns: 1fr; }
-  .title-row h1 { font-size: 1.6rem; }
+  .kpis { grid-template-columns: 1fr; }
+  .title-row h1 { font-size: 1.5rem; }
 }
 )"
 
@@ -574,6 +612,9 @@ tile <- function(title, ..., subtitle = NULL, action = NULL, class = "") {
   )
 }
 
+# Chart area that stretches to fill the rest of its tile
+plot_box <- function(id) div(class = "plot-box", plotlyOutput(id, height = "100%"))
+
 # ── UI ─────────────────────────────────────────────────────────────────────────
 ui <- page(
   title = "Disaster Dash",
@@ -593,7 +634,7 @@ ui <- page(
     tags$nav(
       class = "rail",
       rail_btn("overview",  "table-cells-large", "Overview"),
-      rail_btn("impact",    "sack-dollar",       "Economic impact"),
+      rail_btn("impact",    "sack-dollar",       "Impact"),
       rail_btn("response",  "stopwatch",         "Response & recovery"),
       rail_btn("countries", "earth-americas",    "Countries"),
       div(class = "rail-gap"),
@@ -668,126 +709,96 @@ ui <- page(
         actionButton("reset_button", "Reset", icon = icon("rotate-left"))
       ),
 
-      navset_hidden(
-        id = "views",
+      div(
+        class = "views",
+        navset_hidden(
+          id = "views",
 
-        # ── Overview ─────────────────────────────────────────────────────────
-        nav_panel_hidden(
-          "overview",
-          uiOutput("kpi_cards", class = "grid kpis"),
-          div(
-            class = "grid",
-            div(class = "span-8",
-                tile("Disasters over time",
-                     subtitle = "Monthly totals across the current selection",
-                     action = chip_group("trend_metric",
-                                         c("Events" = "events",
-                                           "Casualties" = "casualties",
-                                           "Loss" = "loss")),
-                     plotlyOutput("p_trend", height = "290px"))),
-            div(class = "span-4",
-                tile("Casualties by type",
-                     subtitle = "Highest highlighted",
-                     plotlyOutput("p_type", height = "290px")))
+          # ── Overview ───────────────────────────────────────────────────────
+          nav_panel_hidden(
+            "overview",
+            div(
+              class = "view overview",
+              div(class = "kpis span-12", uiOutput("kpi_cards")),
+              tile("Disasters over time", class = "span-5",
+                   subtitle = "Monthly totals across the current selection",
+                   action = chip_group("trend_metric",
+                                       c("Events" = "events",
+                                         "Casualties" = "casualties",
+                                         "Loss" = "loss")),
+                   plot_box("p_trend")),
+              tile("Most severe events", class = "span-4",
+                   action = actionLink("view_all", "View all", class = "tile-link"),
+                   div(class = "tile-body", uiOutput("event_list"))),
+              div(class = "spot-wrap span-3", uiOutput("spotlight"))
+            )
           ),
-          div(
-            class = "grid",
-            div(class = "span-8",
-                tile("Most severe events",
-                     action = actionLink("view_all", "View all events",
-                                         class = "tile-link"),
-                     div(class = "table-scroll", uiOutput("event_list")))),
-            div(class = "span-4", uiOutput("spotlight", style = "height:100%"))
-          )
-        ),
 
-        # ── Economic impact ──────────────────────────────────────────────────
-        nav_panel_hidden(
-          "impact",
-          div(
-            class = "grid",
-            div(class = "span-8",
-                tile("Losses vs. aid received",
-                     subtitle = "Quarterly economic loss, split into the share covered by aid",
-                     plotlyOutput("p_loss_aid", height = "320px"))),
-            div(class = "span-4", uiOutput("gap_card", style = "height:100%"))
+          # ── Impact ─────────────────────────────────────────────────────────
+          nav_panel_hidden(
+            "impact",
+            div(
+              class = "view two-rows",
+              tile("Losses vs. aid received", class = "span-8",
+                   subtitle = "Quarterly economic loss, split into the share covered by aid",
+                   plot_box("p_loss_aid")),
+              div(class = "spot-wrap span-4", uiOutput("gap_card")),
+              tile("Casualties by type", class = "span-4",
+                   subtitle = "Total casualties · highest highlighted",
+                   plot_box("p_type")),
+              tile("Aid coverage by type", class = "span-4",
+                   subtitle = "Aid as % of loss · line marks the overall rate",
+                   plot_box("p_coverage")),
+              tile("Loss per event by severity", class = "span-4",
+                   subtitle = "Median economic loss per event",
+                   plot_box("p_sev_loss"))
+            )
           ),
-          div(
-            class = "grid",
-            div(class = "span-6",
-                tile("Aid coverage by disaster type",
-                     subtitle = "Aid as a share of economic loss · line marks the overall rate",
-                     plotlyOutput("p_coverage", height = "320px"))),
-            div(class = "span-6",
-                tile("Loss per event by severity",
-                     subtitle = "Median economic loss per event, by severity band",
-                     plotlyOutput("p_sev_loss", height = "320px")))
-          )
-        ),
 
-        # ── Response & recovery ──────────────────────────────────────────────
-        nav_panel_hidden(
-          "response",
-          div(
-            class = "grid",
-            div(class = "span-7",
-                tile("Severity vs. response time",
-                     subtitle = "Sample of up to 1,500 events with the median response per severity step",
-                     plotlyOutput("p_scatter", height = "320px"))),
-            div(class = "span-5",
-                tile("Response time by disaster type",
-                     subtitle = "Box = middle 50% · whiskers = 5th–95th percentile",
-                     plotlyOutput("p_resp_box", height = "320px")))
+          # ── Response & recovery ────────────────────────────────────────────
+          nav_panel_hidden(
+            "response",
+            div(
+              class = "view two-rows",
+              tile("Severity vs. response time", class = "span-7",
+                   subtitle = "Sample of up to 1,500 events with the median response per severity step",
+                   plot_box("p_scatter")),
+              tile("Response time by disaster type", class = "span-5",
+                   subtitle = "Box = middle 50% · whiskers = 5th–95th percentile",
+                   plot_box("p_resp_box")),
+              tile("Response time trend", class = "span-7",
+                   subtitle = "Quarterly median with the interquartile range shaded",
+                   plot_box("p_resp_trend")),
+              tile("Recovery time by severity", class = "span-5",
+                   subtitle = "Average days to recover, by severity band",
+                   plot_box("p_recovery"))
+            )
           ),
-          div(
-            class = "grid",
-            div(class = "span-7",
-                tile("Response time trend",
-                     subtitle = "Quarterly median with the interquartile range shaded",
-                     plotlyOutput("p_resp_trend", height = "290px"))),
-            div(class = "span-5",
-                tile("Recovery time by severity",
-                     subtitle = "Average days to recover, by severity band",
-                     plotlyOutput("p_recovery", height = "290px")))
-          )
-        ),
 
-        # ── Countries ────────────────────────────────────────────────────────
-        nav_panel_hidden(
-          "countries",
-          div(
-            class = "grid",
-            div(class = "span-12",
-                tile("Compare countries",
-                     subtitle = "Pick a measure — the ranking and heatmap both follow it",
-                     action = chip_group("country_metric",
-                                         c("Events" = "events",
-                                           "Casualties" = "casualties",
-                                           "Loss" = "loss",
-                                           "Aid coverage" = "coverage",
-                                           "Response" = "response")),
-                     div(class = "grid", style = "margin:0",
-                         div(class = "span-5",
-                             plotlyOutput("p_country_rank", height = "480px")),
-                         div(class = "span-7",
-                             plotlyOutput("p_heatmap", height = "480px")))))
-          ),
-          div(
-            class = "grid",
-            div(class = "span-12",
-                tile("Country table",
-                     subtitle = "All countries in the current selection, sorted by number of events",
-                     div(class = "table-scroll", uiOutput("country_table"))))
+          # ── Countries ──────────────────────────────────────────────────────
+          nav_panel_hidden(
+            "countries",
+            div(
+              class = "view one-row",
+              tile("Country ranking", class = "span-4",
+                   subtitle = "Highest highlighted",
+                   action = actionLink("view_table", "Full table", class = "tile-link"),
+                   plot_box("p_country_rank")),
+              tile("Country × disaster type", class = "span-8",
+                   subtitle = "Pick a measure — the ranking and heatmap both follow it",
+                   action = chip_group("country_metric",
+                                       c("Events" = "events",
+                                         "Casualties" = "casualties",
+                                         "Loss" = "loss",
+                                         "Aid coverage" = "coverage",
+                                         "Response" = "response")),
+                   plot_box("p_heatmap"))
+            )
           )
         )
       )
     )
-  ),
-
-  div(class = "credit",
-      "Disaster Dash (R) · ",
-      tags$a("Ojasv Issar", href = "https://github.com/ojasv31", target = "_blank"),
-      " · UBC MDS 2026 · Data 2018–2024")
+  )
 )
 
 # ── Server ─────────────────────────────────────────────────────────────────────
@@ -880,7 +891,10 @@ server <- function(input, output, session) {
       tags$p("Use the search box to focus on specific countries, and the filter bar ",
              "to narrow disaster types and the period. Leaving a filter empty includes everything."),
       tags$p(class = "text-muted", style = "font-size:.85rem",
-             "Data: global_disaster_response_2018_2024.csv · ", fmt_int(nrow(df)), " events.")
+             "Data: global_disaster_response_2018_2024.csv · ", fmt_int(nrow(df)), " events."),
+      tags$p(class = "text-muted", style = "font-size:.85rem",
+             "Built by Ojasv Issar · UBC MDS 2026 · based on the group project by ",
+             "Ojasv Issar, Joel Nicholas Peterson & Claire Saunders.")
     ))
   })
 
@@ -925,33 +939,30 @@ server <- function(input, output, session) {
     }
 
     tagList(
-      div(class = "span-4 kcard yellow",
+      div(class = "kcard yellow",
           div(class = "kcard-top", span(class = "tag dark", "Frequency"),
               span(class = "kcard-ico", icon("bolt"))),
-          div(div(class = "k-value", fmt_int(n)),
-              div(class = "k-title", "disasters recorded")),
+          div(class = "k-value", fmt_int(n), span("disasters recorded")),
           progress("Share of all events", paste(fmt_int(n), "/", fmt_int(nrow(df))),
                    n / nrow(df)),
           div(class = "kcard-foot",
               avatar_stack(by_country$country, nrow(by_country)),
               tags$button(class = "btn-cta", `data-view` = "countries", "Countries"))),
 
-      div(class = "span-4 kcard lilac",
+      div(class = "kcard lilac",
           div(class = "kcard-top", span(class = "tag yellow", "Economic"),
               span(class = "kcard-ico", icon("sack-dollar"))),
-          div(div(class = "k-value", fmt_currency(loss)),
-              div(class = "k-title", "in economic losses")),
+          div(class = "k-value", fmt_currency(loss), span("in economic losses")),
           progress("Aid coverage", paste(fmt_currency(aid), "received"), cov),
           div(class = "kcard-foot",
               tags$small(sprintf("%.1f%% of losses covered", cov * 100)),
               tags$button(class = "btn-cta", `data-view` = "impact", "Impact"))),
 
-      div(class = "span-4 kcard sky",
+      div(class = "kcard sky",
           div(class = "kcard-top", span(class = "tag lilac", "Response"),
               span(class = "kcard-ico", icon("stopwatch"))),
-          div(div(class = "k-value",
-                  if (is.na(med_r)) "–" else sprintf("%.1f h", med_r)),
-              div(class = "k-title", "median time to respond")),
+          div(class = "k-value", if (is.na(med_r)) "–" else sprintf("%.1f h", med_r),
+              span("median response")),
           progress("Responded within 12 h", paste(fmt_int(fast), "/", fmt_int(n)),
                    if (n > 0) fast / n else 0),
           div(class = "kcard-foot",
@@ -1016,20 +1027,18 @@ server <- function(input, output, session) {
     tags$table(
       class = "ltable",
       tags$thead(tags$tr(tags$th("Event"), tags$th("Country"),
-                         tags$th(class = "num", "Severity"),
-                         tags$th(class = "num", "Loss"))),
+                         tags$th(class = "num", "Severity"))),
       tags$tbody(lapply(seq_len(nrow(d)), function(i) {
         r <- d[i, ]
         tags$tr(
           tags$td(class = "ev",
                   tags$b(sprintf("%02d. %s", i, r$disaster_type)),
                   tags$small(format(r$date, "%d %b %Y"), " · ",
-                             fmt_int(r$casualties), " casualties")),
+                             fmt_currency(r$economic_loss_usd))),
           tags$td(div(class = "who", avatar(r$country, "sm"), r$country)),
           tags$td(class = "num",
                   span(class = paste("sev", if (r$severity_index >= 9) "hi"),
-                       sprintf("%.1f", r$severity_index))),
-          tags$td(class = "num", fmt_currency(r$economic_loss_usd))
+                       sprintf("%.1f", r$severity_index)))
         )
       }))
     )
@@ -1048,13 +1057,14 @@ server <- function(input, output, session) {
       div(class = "eyebrow", "Most severe event in your selection"),
       div(span(class = "tag yellow", style = "color:#1f1f1f",
                type_icon(r$disaster_type), " ", r$disaster_type)),
-      tags$h2(paste(r$disaster_type, "in", r$country)),
-      div(class = "meta", format(r$date, "%d %B %Y")),
+      tags$h2(paste(r$disaster_type, "in", r$country),
+              tags$small(format(r$date, "%d %B %Y"))),
       div(class = "spot-stats",
           div(tags$small("Severity"), tags$b(sprintf("%.1f", r$severity_index))),
           div(tags$small("Casualties"), tags$b(fmt_int(r$casualties))),
           div(tags$small("Loss"), tags$b(fmt_currency(r$economic_loss_usd)))),
-      div(div(class = "eyebrow", style = "margin-bottom:8px",
+      div(class = "spot-stack",
+          div(class = "eyebrow", style = "margin-bottom:6px",
               sprintf("%s %s events across", fmt_int(sum(same_type$n)),
                       tolower(r$disaster_type))),
           avatar_stack(same_type$country, nrow(same_type))),
@@ -1101,15 +1111,16 @@ server <- function(input, output, session) {
     div(
       class = "spot",
       div(class = "eyebrow", "Funding gap in your selection"),
-      div(span(class = "tag yellow", style = "color:#1f1f1f", icon("scale-unbalanced"), " Aid vs. loss")),
-      tags$h2(fmt_currency(loss - aid), tags$br(),
-              tags$span(style = "font-size:1rem;color:#cfcdc5", "of losses not covered by aid")),
+      div(class = "spot-tag-opt",
+          span(class = "tag yellow", style = "color:#1f1f1f", icon("scale-unbalanced"), " Aid vs. loss")),
+      tags$h2(fmt_currency(loss - aid), tags$small("of losses not covered by aid")),
       div(class = "spot-stats",
           div(tags$small("Total loss"), tags$b(fmt_currency(loss))),
           div(tags$small("Aid"), tags$b(fmt_currency(aid))),
           div(tags$small("Coverage"), tags$b(if (loss > 0) sprintf("%.1f%%", aid / loss * 100) else "–"))),
       if (nrow(worst) > 0)
-        div(div(class = "eyebrow", style = "margin-bottom:8px", "Lowest aid coverage"),
+        div(class = "spot-stack",
+            div(class = "eyebrow", style = "margin-bottom:6px", "Lowest aid coverage"),
             avatar_stack(worst$country, nrow(worst))),
       tags$button(class = "btn-cta wide", `data-view` = "countries", "Compare countries")
     )
@@ -1318,8 +1329,7 @@ server <- function(input, output, session) {
   })
 
   # ── Countries: Table ────────────────────────────────────────────────────────
-  output$country_table <- renderUI({
-    d <- filtered_df()
+  country_table <- function(d) {
     if (nrow(d) == 0) return(tags$p(class = "text-muted", "No events match the current filters."))
     t <- summarise_impact(d, country) |> arrange(desc(events))
     top_type <- d |> count(country, disaster_type) |>
@@ -1351,6 +1361,14 @@ server <- function(input, output, session) {
         )
       }))
     )
+  }
+
+  observeEvent(input$view_table, {
+    showModal(modalDialog(
+      title = "All countries in your selection", size = "xl", easyClose = TRUE,
+      footer = modalButton("Close"),
+      div(class = "table-scroll", country_table(filtered_df()))
+    ))
   })
 }
 

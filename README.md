@@ -12,7 +12,7 @@ An interactive R Shiny dashboard exploring disaster frequency, economic losses, 
 
 ## Features
 
-A card-based layout with a dark frame, an icon rail, pastel KPI cards and orange call-to-action buttons. It has four views, switchable from the icon rail or the chips next to the title. Each view can be deep-linked, e.g. `/#impact`.
+A card-based layout with a dark frame, an icon rail, pastel KPI cards and orange call-to-action buttons. It has four views, switchable from the icon rail or the chips next to the title. Each view can be deep-linked, e.g. `/#impact`. On desktop, each view fits on one screen with no scrolling; on narrower screens the cards stack.
 
 ### Inputs
 | Input | Type | Description |
@@ -29,10 +29,10 @@ A card-based layout with a dark frame, an icon rail, pastel KPI cards and orange
 ### Views & Outputs
 | View | Outputs |
 |---|---|
-| **Overview** | KPI cards (events, economic loss + aid coverage, median response) · monthly trend (events / casualties / loss) · casualties by disaster type · most severe events list · spotlight on the most severe event |
-| **Economic impact** | Quarterly loss split into aid-covered vs. uncovered · funding-gap card · aid coverage by disaster type · median loss per event by severity band |
+| **Overview** | KPI cards (events, economic loss + aid coverage, median response) · monthly trend (events / casualties / loss) · most severe events list · spotlight on the most severe event |
+| **Impact** | Quarterly loss split into aid-covered vs. uncovered · funding-gap card · casualties by disaster type · aid coverage by disaster type · median loss per event by severity band |
 | **Response & recovery** | Severity vs. response time scatter with median line · response-time box plots by type · quarterly response trend with IQR band · recovery days by severity band |
-| **Countries** | Country ranking + country × disaster type heatmap (events, casualties, loss, aid coverage or response) · full country table |
+| **Countries** | Country ranking + country × disaster type heatmap (events, casualties, loss, aid coverage or response) · full country table in a pop-up |
 
 Extras: a critical-alerts modal (bell icon), a "view all events" modal and an event details modal.
 
