@@ -643,7 +643,7 @@ ui <- page(
       actionLink("rail_reset", icon("rotate-left"), class = "rail-btn",
                  title = "Reset filters"),
       tags$a(class = "rail-btn rail-bottom", title = "Source on GitHub",
-             href = "https://github.com/ojasv31", target = "_blank",
+             href = "https://github.com/ojasvissar", target = "_blank",
              icon("github"))
     ),
 
@@ -669,7 +669,7 @@ ui <- page(
                     icon("bell"), tags$span(class = "dot")),
         div(class = "user",
             span(class = "av", "OI"),
-            div(tags$b("Ojasv Issar"), tags$small("@ojasv31")))
+            div(tags$b("Ojasv Issar"), tags$small("@ojasvissar")))
       ),
 
       div(
