@@ -12,23 +12,29 @@ An interactive R Shiny dashboard exploring disaster frequency, economic losses, 
 
 ## Features
 
-### Inputs (Sidebar)
+A card-based layout with a dark frame, an icon rail, pastel KPI cards and orange call-to-action buttons. It has four views, switchable from the icon rail or the chips next to the title. Each view can be deep-linked, e.g. `/#impact`.
+
+### Inputs
 | Input | Type | Description |
 |---|---|---|
-| Country | Multi-select dropdown | Filter by one or more of 20 countries |
-| Disaster Type | Multi-select dropdown | Filter by disaster category (Flood, Earthquake, etc.) |
-| Date Range | Date range picker | Restrict events to a start and end date |
-| Reset Button | Action button | Restores all filters to their defaults |
+| Country | Search box (multi-select) | Focus on one or more of 20 countries — empty means all |
+| Disaster Type | Multi-select dropdown | Filter by disaster category — empty means all |
+| Period | Date range slider | Restrict events to a start and end month |
+| Reset | Button (also in the icon rail) | Restores all filters to their defaults |
+| Metric chips | Chip toggles | Switch the measure shown in the trend and country charts |
 
 ### Reactive Calc
-- `filtered_df()` — a reactive dataframe that applies all sidebar filters at once; every chart reads from it
+- `filtered_df()` — a reactive dataframe that applies all filters at once; every card, chart and table reads from it
 
-### Outputs
-| Output | Type | Description |
-|---|---|---|
-| Disasters Over Time | Line chart | Monthly event count across the filtered selection |
-| Casualty Share by Disaster Type | Pie chart | Proportion of total casualties per disaster category |
-| Severity vs. Response Time | Scatter plot | Each event plotted by severity index and response time, coloured by disaster type |
+### Views & Outputs
+| View | Outputs |
+|---|---|
+| **Overview** | KPI cards (events, economic loss + aid coverage, median response) · monthly trend (events / casualties / loss) · casualties by disaster type · most severe events list · spotlight on the most severe event |
+| **Economic impact** | Quarterly loss split into aid-covered vs. uncovered · funding-gap card · aid coverage by disaster type · median loss per event by severity band |
+| **Response & recovery** | Severity vs. response time scatter with median line · response-time box plots by type · quarterly response trend with IQR band · recovery days by severity band |
+| **Countries** | Country ranking + country × disaster type heatmap (events, casualties, loss, aid coverage or response) · full country table |
+
+Extras: a critical-alerts modal (bell icon), a "view all events" modal and an event details modal.
 
 ---
 
